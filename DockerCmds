@@ -11,3 +11,5 @@ docker ps -a (list all containers)
 docker ls(list all images)
 
 docker push (pushing image to repository)
+
+iwr -useb http://localhost:8080/
