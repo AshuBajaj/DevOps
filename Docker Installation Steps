@@ -1,0 +1,10 @@
+# Debian/Linux
+apt-get update
+apt-get install docker*
+# Centos/linux
+yum update
+yum install docker
+# Restart Docker
+systemctl restart docker
+# enable docker
+systemctl enable docker
