@@ -1,0 +1,13 @@
+kubectl get persistentvolume
+
+#Check the identity
+az aks show --resource-group SC10-WEU-PREPROD-RG --name SC10-WEU-PREPROD-AKSCluster --query addonProfiles.azureKeyvaultSecretsProvider.identity.clientId --output tsv
+
+
+# AKS Binding with Keyvault
+az aks get-credentials --resource-group SC10-WEU-PREPROD-RG --name SC10-WEU-PREPROD-AKSCluster
+az aks enable-addons --addons azure-keyvault-secrets-provider --name SC10-WEU-PREPROD-AKSCluster --resource-group SC10-WEU-PREPROD-RG 
+az aks disable-addons -a monitoring -n SC10-WEU-PREPROD-AKSCluster -g SC10-WEU-PREPROD-RG az aks operation-abort --name SC10-WEU-PREPROD-AKSCluster --resource-group SC10-WEU-PREPROD-RG az resource update --ids /subscriptions/65b31925-09f7-4463-b938-4cf03a8989bb/resourceGroups/SC10-WEU-PREPROD-RG/providers/Microsoft.ContainerService/managedClusters/SC10-WEU-PREPROD-AKSCluster --debug az aks enable-addons -a monitoring -n SC10-WEU-PREPROD-AKSCluster -g SC10-WEU-PREPROD-RG --workspace-resource-id /subscriptions/65b31925-09f7-4463-b938-4cf03a8989bb/resourcegroups/sc10-weu-preprod-rg/providers/microsoft.operationalinsights/workspaces/sc10-weu-preprod-loganalyticsworkspace --debug az aks enable-addons --addons azure-keyvault-secrets-provider --name SC10-WEU-PREPROD-AKSCluster --resource-group SC10-WEU-PREPROD-RG --debug kubectl get pods -n kube-system -l 'app in (secrets-store-csi-driver,secrets-store-provider-azure)' 
+az vmss identity show -g sc10-weu-preprod-rgaksclusterinfra -n aks-agentpool-12643273-vmss -o yaml
+az vm identity show -g <resource group> -n <vm name> -o yaml az keyvault set-policy -n SC10-WEU-PREPROD-SCKV --secret-permissions get --spn b2db65e3-d138-49b1-8226-916c93686378 az keyvault set-policy -n SC10-WEU-PREPROD-SCKV --secret-permissions get --spn 8d183270-850a-4204-be44-924dbc460de7
+
